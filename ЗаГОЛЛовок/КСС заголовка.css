@@ -1,0 +1,27 @@
+/* Стилизация заголовков */
+h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+h6 {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+/* Стилизация параграфа */
+p {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+/* Стилизация элементов списка */
+ul {
+    font-size: 1.1em;
+    font-weight: 600;
+}

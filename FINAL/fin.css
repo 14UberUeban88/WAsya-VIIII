@@ -1,0 +1,91 @@
+// Простые переменные для цвета
+$bg-color: #f4f4f4;
+$main-color: #007bff;
+$text-color: #333;
+
+// Общие стили для всей страницы
+body {
+  font-family: Arial, sans-serif;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  text-align: center; // Выравниваем всё по центру для простоты
+}
+
+section {
+  padding: 40px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Стили для секции О себе
+.about img {
+  width: 150px;
+  border-radius: 10px;
+}
+ul {
+  display: inline-block; // Чтобы список был по центру
+  text-align: left;
+}
+
+// Стили галереи и отзывов (в десктопной версии строятся в ряд)
+.gallery, .reviews {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.project, .review-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  background: #fff;
+  width: 300px;
+}
+
+.review-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; // Идеально круглые аватары
+}
+
+// Ссылки и иконки
+a {
+  color: $main-color;
+  text-decoration: none;
+}
+.socials i {
+  font-size: 2rem;
+  margin: 0 10px;
+}
+
+// Простая форма
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  input, textarea, button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  button {
+    background: $main-color;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+// МЕДИАЗАПРОС: Если экран меньше 1024px — карточки встают друг под друга
+@media (max-width: 1024px) {
+  .gallery, .reviews {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -26,5 +26,18 @@
         
     </form>
 
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Перехватываем стандартную отправку на сервер, чтобы не было 404 ошибки
+            event.preventDefault(); 
+            
+            // Получаем выбранный напиток
+            const drink = document.getElementById('drink-select').value;
+            
+            // Выводим сообщение пользователю
+            alert('Успешно! Вы выбрали: ' + drink + '.\n(Реальная отправка на /submit-feedback заблокирована для GitHub Pages)');
+        });
+    </script>
+
 </body>
 </html>

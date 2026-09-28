@@ -3,67 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карточка товара</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .product-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .product-card img {
-            width: 100%;
-            border-radius: 8px;
-            display: block;
-        }
-
-        .product-card h2 {
-            font-size: 1.5rem;
-            margin: 15px 0;
-            color: #333333;
-        }
-
-        .product-card p {
-            font-size: 1rem;
-            color: #555555;
-            line-height: 1.4;
-        }
-
-        .product-card .price {
-            display: block;
-            color: #e74c3c;
-            font-size: 1.2rem;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Отзывы на товары</title>
+    <link rel="stylesheet" href="ass.css">
 </head>
 <body>
 
-    <div class="product-card">
-        <img src="https://stocksnap.io" alt="Название товара">
-        <h2>Название товара</h2>
-        <p>Краткое описание товара.</p>
-        <span class="price">Цена: 1000 ₽</span>
-    </div>
+    <header>
+        <h1>Отзывы на товары</h1>
+    </header>
+
+    <main class="reviews-container">
+
+        <div class="review-card">
+            <h3>Беспроводные наушники</h3>
+            <p class="user-name">Алексей С.</p>
+            <p class="review-text">Звук отличный, басы глубокие. Заряда хватает на целый день активного использования. Рекомендую!</p>
+        </div>
+
+
+        <div class="review-card">
+            <h3>Умные часы</h3>
+            <p class="user-name">Мария П.</p>
+            <p class="review-text">Красивый дизайн, на руке сидят идеально. Шаги и пульс считают точно, уведомления приходят без опозданий.</p>
+        </div>
+
+
+        <div class="review-card">
+            <h3>Портативная колонка</h3>
+            <p class="user-name">Дмитрий К.</p>
+            <p class="review-text">Громкая, компактная, защищена от воды. Брали на природу — все в восторге от качества звука.</p>
+        </div>
+    </main>
 
 </body>
 </html>

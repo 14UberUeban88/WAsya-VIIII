@@ -1,0 +1,56 @@
+// 1. Переменные цветов (Критерий оценивания — 3 балла)
+$color-desktop: #007bff; // Синий фон для больших экранов (>768px)
+$color-tablet: #28a745;  // Зелёный фон для средних экранов (480px - 768px)
+$color-mobile: #ffc107;  // Жёлтый фон для узких экранов (<480px)
+
+// Базовые стили для демонстрации
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    // Начальное состояние: Синий фон на широких экранах (более 768px)
+    background-color: $color-desktop;
+    transition: background-color 0.3s ease; // Плавное изменение цвета при ресайзе
+}
+
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    
+    h1 {
+        margin-top: 0;
+        color: #333;
+    }
+    
+    ul {
+        text-align: left;
+        display: inline-block;
+        color: #555;
+    }
+}
+
+// 2. Медиазапросы для адаптивности (Критерий оценивания — 3 балла)
+
+// Экраны шириной от 480px до 768px (Планшеты)
+@media (max-width: 768px) {
+    body {
+        background-color: $color-tablet; // Зелёный фон
+    }
+}
+
+// Экраны шириной менее 480px (Телефоны)
+@media (max-width: 480px) {
+    body {
+        background-color: $color-mobile; // Жёлтый фон
+    }
+}

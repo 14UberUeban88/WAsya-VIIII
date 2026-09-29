@@ -1,0 +1,83 @@
+// 1. ПЕРЕМЕННЫЕ (Variables)
+$bg-global: #f4f7f6;       // Основной фон страницы
+$card-white: #ffffff;      // Фон самой визитки
+$text-dark: #2c3e50;       // Цвет главного текста и заголовка
+$text-light: #7f8c8d;      // Цвет описания
+$primary-color: #3498db;    // Главный акцентный цвет для кнопок-контактов
+
+// 2. ПРИМЕСИ (Mixins)
+// Шаблон для стилизации контактных кнопок-ссылок
+@mixin contact-button($color) {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    color: #ffffff;
+    background-color: $color;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    // 3. ФУНКЦИЯ (Sass Function)
+    // Используем встроенную функцию darken() для автоматического затемнения фона при наведении
+    &:hover {
+        background-color: darken($color, 12%);
+        transform: translateY(-2px);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// Базовые стили страницы
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $bg-global;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+// 4. ВЛОЖЕННОСТЬ (Nesting)
+.card {
+    background-color: $card-white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+
+    &__name {
+        font-size: 24px;
+        color: $text-dark;
+        margin-bottom: 10px;
+    }
+
+    &__description {
+        font-size: 15px;
+        color: $text-light;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+        // Подключаем примесь к кнопкам внутри блока контактов
+        .btn {
+            @include contact-button($primary-color);
+            
+            // Можно кастомизировать отдельные кнопки через ту же примесь
+            &--email {
+                @include contact-button(#2ecc71); // Зеленый цвет для почты
+            }
+        }
+    }
+}

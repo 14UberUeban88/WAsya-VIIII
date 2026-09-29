@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+.card__name {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+.card__description {
+  font-size: 15px;
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+.card__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card__contacts .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  color: #ffffff;
+  background-color: #3498db;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.card__contacts .btn:hover {
+  background-color: #217dbb;
+  transform: translateY(-2px);
+}
+.card__contacts .btn:active {
+  transform: translateY(0);
+}
+.card__contacts .btn--email {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  color: #ffffff;
+  background-color: #2ecc71;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.card__contacts .btn--email:hover {
+  background-color: #20a155;
+  transform: translateY(-2px);
+}
+.card__contacts .btn--email:active {
+  transform: translateY(0);
+}

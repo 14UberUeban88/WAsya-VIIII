@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация пользователя</title>
+</head>
+<body>
+
+    <!-- Создаем форму с классом register-form по инструкции -->
+    <form class="register-form">
+        <!-- Поле для имени -->
+        <label>Имя:</label>
+        <input type="text" class="name-input"><br><br>
+
+        <!-- Чекбокс для согласия с условиями -->
+        <label>
+            <input type="checkbox" class="agree-checkbox"> Я согласен с условиями
+        </label><br><br>
+
+        <!-- Кнопка проверки (тип button, чтобы форма случайно не перезагружалась) -->
+        <button type="button" class="validate-button">Проверить</button>
+    </form>
+
+    <script>
+        // Находим все нужные элементы по их классам
+        let nameInput = document.querySelector(".name-input");
+        let agreeCheckbox = document.querySelector(".agree-checkbox");
+        let validateButton = document.querySelector(".validate-button");
+
+        // 1. Отслеживаем событие "input" (каждое нажатие клавиши в поле имени)
+        nameInput.addEventListener("input", function() {
+            // Ученик вводит текст — просто выводим текущее значение в консоль для контроля
+            console.log(`Пользователь вводит имя: ${nameInput.value}`);
+        });
+
+        // 2. Отслеживаем событие "click" при нажатии на кнопку проверки
+        validateButton.addEventListener("click", function() {
+            // Получаем чистый текст из поля ввода (убираем пробелы по краям)
+            let username = nameInput.value.trim();
+            // Проверяем, поставлена ли галочка в чекбоксе (true или false)
+            let isAgreed = agreeCheckbox.checked;
+
+            console.log("--- Начало проверки формы ---");
+
+            // Переменная для общей проверки: если хоть одна проверка завалится, станет false
+            let isValid = true;
+
+            // Валидация имени: проверяем, что поле не пустое и длина хотя бы 2 символа
+            if (username === "") {
+                console.log("Ошибка валидации: Поле имени пустое.");
+                isValid = false;
+            } else if (username.length < 2) {
+                console.log("Ошибка валидации: Имя должно быть не короче 2 символов.");
+                isValid = false;
+            } else {
+                console.log(`Успех: Имя "${username}" введено корректно.`);
+            }
+
+            // Валидация чекбокса: проверяем, согласился ли пользователь с условиями
+            if (!isAgreed) {
+                console.log("Ошибка валидации: Не отмечено согласие с условиями.");
+                isValid = false;
+            } else {
+                console.log("Успех: Согласие с условиями получено.");
+            }
+
+            // Финальный вывод общего результата в консоль
+            if (isValid) {
+                console.log("Итог: Валидация прошла успешно! Форма готова к отправке.");
+            } else {
+                console.log("Итог: Валидация не пройдена. Исправьте ошибки выше.");
+            }
+            
+            console.log();
+        });
+    </script>
+
+</body>
+</html>

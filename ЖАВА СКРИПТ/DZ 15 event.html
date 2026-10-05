@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма с проверкой возраста</title>
+</head>
+<body>
+
+    <!-- 1. Создаем HTML-форму с полями ввода имени и возраста -->
+    <form id="userForm">
+        <label>Ваше имя:</label><br>
+        <input type="text" id="username"><br><br>
+
+        <label>Ваш возраст:</label><br>
+        <input type="text" id="userage"><br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <!-- Сюда будем выводить сообщения (ошибки или приветствие) в интерфейсе -->
+    <p id="outputMessage" style="font-weight: bold;"></p>
+
+    <script>
+        // Находим форму и абзац для вывода сообщений
+        let myForm = document.getElementById("userForm");
+        let outputText = document.getElementById("outputMessage");
+
+        // 2. Обрабатываем отправку формы через событие submit
+        myForm.addEventListener("submit", function(event) {
+            
+            // 4. Предотвращаем перезагрузку страницы при отправке формы
+            event.preventDefault();
+
+            // Берем значения из полей ввода и убираем лишние пробелы по краям
+            let nameValue = document.getElementById("username").value.trim();
+            let ageValue = document.getElementById("userage").value.trim();
+
+            // Очищаем текст перед новой проверкой
+            outputText.innerText = "";
+
+            // Проверяем имя (просто чтобы оно не было пустым)
+            if (nameValue === "") {
+                outputText.innerText = "Ошибка: Введите, пожалуйста, свое имя.";
+                outputText.style.color = "red";
+                return; // Останавливаем выполнение функции
+            }
+
+            // 3. Проверяем возраст с помощью Number() и isNaN()
+            let ageNumber = Number(ageValue);
+
+            // Проверяем: если поле пустое, или ввели буквы (isNaN), или число 0 и меньше
+            if (ageValue === "" || isNaN(ageNumber) || ageNumber <= 0) {
+                // 4. Отображает ошибки при некорректном вводе
+                outputText.innerText = "Ошибка: Возраст должен быть положительным числом!";
+                outputText.style.color = "red";
+                return; // Останавливаем выполнение функции
+            }
+
+            // Проверяем, что ввели именно целое число (чтобы не ввели 20.5 лет)
+            if (!Number.isInteger(ageNumber)) {
+                outputText.innerText = "Ошибка: Возраст должен быть целым числом!";
+                outputText.style.color = "red";
+                return;
+            }
+
+            // 3. Выводит приветственное сообщение при успешной отправке
+            outputText.innerText = `Привет, ${nameValue}! Форма успешно отправлена. Ваш возраст: ${ageNumber} лет.`;
+            outputText.style.color = "green";
+
+            // Очищаем поля формы после успешного ввода
+            myForm.reset();
+        });
+    </script>
+
+</body>
+</html>

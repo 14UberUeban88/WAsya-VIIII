@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка пользовательских данных</title>
+</head>
+<body>
+
+    <!-- Создаем форму с классом user-form по инструкции -->
+    <form class="user-form" onsubmit="sendData(event)">
+        
+        <!-- Текстовое поле для имени -->
+        <label>Имя:</label><br>
+        <input type="text" name="name" class="name-input"><br><br>
+
+        <!-- Обязательное поле для email -->
+        <label>Email (обязательно):</label><br>
+        <input type="email" name="email" class="email-input" required><br><br>
+
+        <!-- Выпадающий список с тремя вариантами -->
+        <label>Страна:</label><br>
+        <select name="country" class="country-select">
+            <option value="ru">Россия</option>
+            <option value="by">Беларусь</option>
+            <option value="ua">Украина</option>
+            <option value="kz">Казахстан</option>
+        </select><br><br>
+
+        <!-- Текстовая область -->
+        <label>Комментарий:</label><br>
+        <textarea name="comment" class="comment-textarea"></textarea><br><br>
+
+        <!-- Кнопка отправки формы -->
+        <button type="submit">Отправить данные</button>
+    </form>
+
+    <!-- Сюда будем выводить сообщения для пользователя -->
+    <p id="status-message"></p>
+
+    <script>
+        // Функция, которая срабатывает при попытке отправить форму
+        function sendData(event) {
+            // Отменяем стандартную перезагрузку страницы браузером
+            event.preventDefault();
+
+            // Находим элементы формы для проверки
+            let formElement = document.querySelector(".user-form");
+            let nameInput = document.querySelector(".name-input");
+            let emailInput = document.querySelector(".email-input");
+            let statusMessage = document.getElementById("status-message");
+
+            // Очищаем старые сообщения о статусе
+            statusMessage.innerText = "";
+
+            // ДОПОЛНИТЕЛЬНАЯ ВАЛИДАЦИЯ ДАННЫХ
+            // 1. Проверяем имя: оно не должно быть пустым или состоять только из пробелов
+            if (nameInput.value.trim() === "") {
+                statusMessage.innerText = "Ошибка: Пожалуйста, введите ваше имя.";
+                statusMessage.style.color = "red";
+                return; // Останавливаем отправку
+            }
+
+            // 2. Проверяем email: браузер проверит его сам благодаря required, 
+            // но мы на всякий случай добавим простую JS проверку на наличие знака @
+            if (!emailInput.value.includes("@")) {
+                statusMessage.innerText = "Ошибка: Некорректный формат email.";
+                statusMessage.style.color = "red";
+                return; // Останавливаем отправку
+            }
+
+            // СБОР ДАННЫХ: Автоматически собираем все заполненные поля формы с помощью FormData
+            let formData = new FormData(formElement);
+
+            statusMessage.innerText = "Отправка данных...";
+            statusMessage.style.color = "blue";
+
+            // АСИНХРОННАЯ ОТПРАВКА через fetch на тестовый сервер (используем бесплатный эмулятор JSONPlaceholder)
+            fetch("https://typicode.com", {
+                method: "POST",
+                body: formData // Передаем собранные данные формы
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Если сервер ответил успешно (код 200-299)
+                    statusMessage.innerText = "Успех! Данные успешно отправлены на сервер.";
+                    statusMessage.style.color = "green";
+                    formElement.reset(); // Очищаем форму после успешной отправки
+                } else {
+                    // Если сервер вернул ошибку
+                    statusMessage.innerText = "Ошибка сервера при отправке.";
+                    statusMessage.style.color = "red";
+                }
+            })
+            .catch(error => {
+                // Если пропал интернет или сервер вообще недоступен
+                statusMessage.innerText = "Не удалось связаться с сервером. Проверьте сеть.";
+                statusMessage.style.color = "red";
+            });
+        }
+    </script>
+
+</body>
+</html>

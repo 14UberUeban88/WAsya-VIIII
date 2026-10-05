@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Проверка арифметики</title>
+</head>
+<body>
+
+    <!-- 1. Создаем элементы для примера (как в условии задачи) -->
+    <input id="a1" value="2" type="number" disabled> + 
+    <input id="b1" value="2" type="number" disabled> = 
+    <input id="result1" type="number">
+    
+    <button onclick="check()">Проверить</button>
+
+    <!-- Сюда будем выводить сообщение о результате -->
+    <p id="message"></p>
+
+    <script>
+        // 2. Пишем функцию «Проверить»
+        function check() {
+            // Находим все нужные поля ввода по их id
+            let inputA = document.getElementById("a1");
+            let inputB = document.getElementById("b1");
+            let inputResult = document.getElementById("result1");
+            let messageText = document.getElementById("message");
+
+            // Переводим текст из полей ввода в обычные числа
+            let numA = Number(inputA.value);
+            let numB = Number(inputB.value);
+            let userAns = Number(inputResult.value);
+
+            // Считаем, какой ответ должен быть на самом деле
+            let correctAns = numA + numB;
+
+            // Блокируем поле ввода ответа после нажатия кнопки (чтобы нельзя было исправить)
+            inputResult.disabled = true;
+
+            // Проверяем, совпадает ли ответ ученика с правильным
+            if (userAns === correctAns) {
+                // Если правильно: пишем текст и красим его в зеленый цвет
+                messageText.innerText = "Правильно! Молодец.";
+                messageText.style.color = "green";
+            } else {
+                // Если неправильно: пишем текст и красим в красный цвет
+                messageText.innerText = "Неправильно. Попробуй еще раз.";
+                messageText.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
